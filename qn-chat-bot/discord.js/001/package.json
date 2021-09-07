@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "discord-reply": "^0.1.2",
+    "discord.js": "^13.1.0",
+    "winston": "^3.3.3"
+  }
+}

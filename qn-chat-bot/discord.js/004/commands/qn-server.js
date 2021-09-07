@@ -1,0 +1,14 @@
+/*
+ * qn-server.js
+ */
+const { SlashCommandBuilder } = require("@discordjs/builders");
+const { execute } = require("./qn-ping");
+
+module.exports = {
+  data: new SlashCommandBuilder()
+        .setName("qserver")
+        .setDescription("Replies with server info!"),
+  async execute(interaction) {
+    await interaction.reply(`Server name: ${interaction.guild.name}. Total members: ${interaction.guild.memberCount}`);
+  },
+};

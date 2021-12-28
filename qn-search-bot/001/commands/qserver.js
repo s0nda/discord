@@ -1,5 +1,5 @@
 /*
- * qn-server.js
+ * @file: "qserver.js"
  */
 const { SlashCommandBuilder } = require("@discordjs/builders");
 

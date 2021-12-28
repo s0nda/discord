@@ -1,12 +1,13 @@
 /*
  * messageCreate.js
  */
+const _PREFIX_ = "!q";
+
 module.exports = {
   name: "messageCreate",
   execute: async (message) => {
-    const prefix = "!q";
-    if ( !message.content.startsWith(prefix) || message.author.bot ) return;
-    const command = message.content.slice(prefix.length)
+    if ( !message.content.startsWith(_PREFIX_) || message.author.bot ) return;
+    const command = message.content.slice(_PREFIX_.length)
                                    .trim()
                                    .split(/ +/)[0]
                                    .toLowerCase();
@@ -20,6 +21,8 @@ module.exports = {
         break;
       case "user":
         await message.reply(`Your name: ${message.author.username}. Your tag: ${message.author.tag}`);
+        break;
+      case "wikt": // wiktionary        
         break;
       default:
         break;

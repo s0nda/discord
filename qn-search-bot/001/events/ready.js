@@ -13,6 +13,6 @@ module.exports = {
     });
     // Run bot server
     console.log(`Logged in as: ${client.user.username}`);
-    console.log("Ready!\n");
+    console.log("Ready!");
   },
 };

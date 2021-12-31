@@ -3,9 +3,9 @@
  */
 const fs = require("fs");
 const { REST } = require("@discordjs/rest");
+const { clientId, token } = require("../config.json");
 const { Routes } = require("discord-api-types/v9");
 //const { clientId, guildId, token } = require("./config.json");
-const { clientId, token } = require("../config.json");
 
 // RESTful transaction
 const rest = new REST({ version: '9' }).setToken(token);
@@ -41,7 +41,7 @@ const deploy = async (guild) => {
         Routes.applicationGuildCommands(clientId, guild.id),
         { body: commands },
       );
-      console.log(`Successfully registered application commands at server "${guild.name}" (Id: ${guild.id}).`);
+      console.log(`Successfully registered application commands at server "${guild.name}" (Id: ${guild.id})`);
   } catch (error) {
       console.error(error);
   }

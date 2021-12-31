@@ -1,0 +1,107 @@
+%
+% settings.tex
+%
+%======================================================
+% import packages
+%======================================================
+\usepackage[utf8]{inputenc}%\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage[autostyle]{csquotes}% load "csquotes" when working with "babel" and "bibtex" to avoid
+                                % the warning "'babel/polyglossia' detected but 'csquotes' missing".
+\usepackage{amsmath,amsthm,amssymb}
+%\usepackage[sc]{mathpazo}% sc = small-cap
+\usepackage{mathptmx}% supports Adobe Times Roman (or equivalent) as default text font.
+\usepackage{bm}% display bold maths symbols.
+\usepackage{float}% used with \begin{figure}[H] to set fixed position.
+\usepackage{graphicx}
+\usepackage{color}% supports \fcolorbox{border-color}{background-color}{text}
+\usepackage{caption}
+\usepackage{listings}% supports formatted code
+\usepackage{imakeidx}% create index for later looking-up
+\usepackage{hyperref}
+\usepackage{hypcap}
+\usepackage[backend=biber,style=numeric,]{biblatex}% bibliography processor [biber] for BibLatex,
+                                                   % [style=alphabetic,]
+
+%======================================================
+% colors
+%======================================================
+\definecolor{almond}{rgb}{0.94, 0.87, 0.8}
+\definecolor{fluorescentyellow}{rgb}{0.8, 1.0, 0.0}
+\definecolor{lightcyan}{rgb}{0.88, 1.0, 1.0}
+\definecolor{navajowhite}{rgb}{1.0, 0.87, 0.68}
+
+%======================================================
+% configurations
+%======================================================
+\makeindex% create index for later looking-up
+\setlength\parindent{0pt}% set \noindent for entrie file
+%
+% define variable for language:
+%   de : Deutsch
+%   en : English
+\newcommand{\lang}{en}% default English.
+\renewcommand{\lang}{de}% (redundant). Set German as active language.
+%
+% change the value \proofname (italic "Proof"/"Beweis" by default)
+% and its style to bold (\bfseries) and uppercase (\textup).
+\addto{\captionsngerman}{%
+  \def\proofname{\textbf{\textup{Beweis.}}}
+}
+%
+% command for setting indentation and parskip in minipage.
+\setlength{\parskip}{\medskipamount}% set vertical spacing between two paragraphs (glocal), \parskip = paragraph skip
+\makeatletter 
+\newcommand{\@minipagerestore}{%
+  \setlength{\parindent}{0pt}% set indentation at paragraph begin (local)
+  \setlength{\parskip}{\medskipamount}% set vertical spacing between two paragraphs (local, minipage), \parskip = paragraph skip
+}
+\makeatother
+%
+% define new theorem style
+\newtheoremstyle{mytheoremstyle}% name of the style to be used
+  {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
+  {\topsep}% measure of space to leave below the theorem. E.g.: 3pt
+  {\itshape}% name of font to use in the body of the theorem
+  {0pt}% measure of space to indent
+  {\bfseries}% name of head font
+  {. }% punctuation between head and body
+  { }% space after theorem head; " " = normal interword space
+  {\thmname{\textbf{#1}}\thmnumber{ #2}\thmnote{ (#3)}}
+%
+%\theoremstyle{mytheoremstyle}
+
+
+%======================================================
+% define new environments
+%======================================================
+\newtheorem{definition}{Definition}[section]% numbered due to [section]
+%
+\theoremstyle{mytheoremstyle}% set theorem style
+\newtheorem{theorem}[definition]{Theorem}% numbered due to [defintion]
+%
+% define new environment for Example. First argument #1
+% has default value [Example], that means, the calling
+% "\begin{example} ABCD \end{example}" yields
+% "Example. ABCD". The whole example-environment is
+% within a \par environment (paragraph).
+\newenvironment{example}[1][%
+  \ifthenelse{% if
+    \equal{\lang}{de}
+  }{% then
+    Beispiel.
+  }{% else
+    Example.
+}]{%
+  \par{{\bfseries #1.}}
+}{\par}
+%
+
+%======================================================
+% define new commands
+%======================================================
+% fcbox => #1: border & background color
+%          #2: text content
+\newcommand*{\fcbox}[2]{%
+  \fcolorbox{#1}{#1}{#2}
+}%

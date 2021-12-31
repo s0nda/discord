@@ -1,0 +1,151 @@
+%
+% Title:  "Developer Documentation"
+% File:   "main.tex"
+% Author: "s0nda"
+%
+% Inspired from the tum-thesis-latex of Florian Walch
+% [https://github.com/fwalch/tum-thesis-latex]
+
+%======================================================
+% set paper format A4 and one-sided
+\documentclass[paper=a4,oneside,footsepline,headinclude=false,footinclude=false,fontsize=11pt,listof=totoc,bibliography=totoc]{scrbook}
+
+%======================================================
+% import packages and configurations
+%======================================================
+\input{settings}
+
+%======================================================
+% import bibliography (bibtex)
+%======================================================
+\addbibresource{bibliography.bib}
+
+%=====================================================%
+%                                                     %
+%             BEGIN DOCUMENT                          %
+%                                                     %
+%=====================================================%
+\begin{document}
+
+%======================================================
+% Cover Page
+%======================================================
+\pagestyle{empty}% turn-off page numbering
+\input{pages/cover}
+
+%======================================================
+%\pagenumbering{roman}% set page numbering (alph,roman,arabic).
+\frontmatter{}% start page numbering in lowercase Roman style.
+
+%======================================================
+% Abstract
+%======================================================
+\pagestyle{plain}% turn-on page numbering
+\input{pages/abstract}
+
+%======================================================
+% Table of Contents
+%======================================================
+\tableofcontents
+
+%======================================================
+\mainmatter{}% set page numbering in Arabic style.
+
+%======================================================
+% Chapter 1
+%======================================================
+\input{pages/chap001}
+
+%======================================================
+% Chapter 2
+%======================================================
+\input{pages/chap002}
+
+%======================================================
+% Add appendix (Anhang)
+%======================================================
+\appendix{}
+
+%======================================================
+% Print the index list for later looking-up
+%
+% 1. Import package {makeindex}:
+%       \usepackage{makeindex}
+%
+% 2. Add keyword "\makeindex" before/outside
+%    "\begin{document}".
+%
+% 3. Add keyword "\printindex" within "\begin{document}".
+%
+% 4. Use keyword "\index{<entry>}" following a word
+%    to add entry to index:
+%       <Word>\index{<entry>}
+%
+% 5. Example:
+%       \documentclass{article}
+%       \usepackage[ngerman]{babel}
+%       \usepackage{makeidx}
+%       \makeindex
+%
+%       \begin{document}
+%       ...
+%           word1 word2 ... wordN\index{entry}
+%       ...
+%       \printindex
+%       ...
+%       \end{document}
+%
+%======================================================
+\printindex
+
+%======================================================
+% Print the bibliography (Literatur)
+%
+% 1. Install Biber:
+%       $ sudo apt install biber
+%
+% 2. Import package {biber} for creating bibliography:
+%       \usepackage[backend=biber,style=numeric,]{biblatex}
+%
+% 3. Import package {csquotes} when working with "babel"
+%    and "bibtex" to avoid the warning "'babel/polyglossia'
+%    detected but 'csquotes' missing":
+%
+%       \usepackage[autostyle]{csquotes}
+%
+% 4. Add bibliography file before \begin{document}:
+%       \addbibresource{bibliography.bib}
+%
+% 5. Add command for printing bibliography:
+%       \printbibliography
+%
+% 6. Run in console:
+%       $ pdflatex main.tex
+%       $ biber main.bcf
+%       $ pdflatex main.tex
+%       $ pdflatex main.tex
+%
+%======================================================
+\printbibliography
+
+%======================================================
+% Print list of figures (Abbildungsverzeichnis)
+%
+% 1. Import packages "\usepackage{graphicx}" and
+%    "\usepackage{caption}".
+% 2. Add "\listoffigures" within "\begin{doucment}".
+% 3. Use "\begin{figure}"-environment and "\includegraphics"
+%    to bind/display images.
+% 4. Use "\caption[<short-title>]{<long-title>}" or
+%    "\cationof{figure}[<list-entry-description>]{<title>}"
+%    to assign caption to image and update image-list.
+% 5. Compile .tex file twice:
+%       $ pdflatex main.tex
+%       $ pdflatex main.tex
+%
+%======================================================
+\listoffigures
+
+\backmatter{}% end of page numbering
+
+\end{document}

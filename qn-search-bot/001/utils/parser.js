@@ -2,63 +2,59 @@
  * @file: "parser.js"
  */
 const { DOMParser } = require("xmldom"); // XMLDOM
-
 const { parse_wiktionary } = require("./parse_wiktionary.js")
 
-
-// Parser object
+//=========================================================================
+/*
+ * Parser object
+ */
 const Parser = {
   /*
    * parse
    *
    * @params
-   * 
    *    {data: string}:
    * 
-   *    {options: Object}: JSON-like object with structure
-   *        { 
-   *          mimeType: ...,   // string
-   *          lang: ...,       // string
-   *          smi: ...,        // int
-   *        }
-   *   
-   *    where
+   *    {mimeType: string}:
    * 
-   *    - lang : language of the content to be
-   *             searched.
-   *               en = english, englisch
-   *               de = german, deutsch
-   *               vn = vietnamese, vietnamesisch
+   *    {language: string}:
+   *        Language of the content to besearched.
+   *          en = english, englisch
+   *          de = german, deutsch
+   *          vn = vietnamese, vietnamesisch
    * 
-   *    - smi : Search Machine Index,
-   *            is a special number that indicates
-   *            which search machine/dictionary
-   *            should be used.
-   *            The index numbers are:
-   *            __________________________________
-   *            Search machine:
-   *              1 = google
-   *              2 = bing
-   *              3 = yahoo
-   *              4 = duckduckgo
-   *              5 = fastbot
-   *            __________________________________
-   *            Encyclopedia:
-   *              10 = wikipedia
-   *              11 = klexikon
-   *            __________________________________
-   *            Dictionary:
-   *              20 = wiktionary
-   *              21 = dwds
-   *              22 = duden
+   *    {engine_index: int}:
+   *        Engine Index; is a special number that
+   *        indicates which search engine should be
+   *        used. The index numbers are:
+*            __________________________________
+*            Search machine:
+*              1 = google
+*              2 = bing
+*              3 = yahoo
+*              4 = duckduckgo
+*              5 = fastbot
+*            __________________________________
+*            Encyclopedia:
+*              10 = wikipedia
+*              11 = klexikon
+*            __________________________________
+*            Dictionary:
+*              20 = wiktionary
+*              21 = dwds
+*              22 = duden
+   * 
+   * @return
+   *    Embed object that contains retrieved results
    */
-  parse: (data, options = { mimeType: "text/xml", lang: "de", smi: 20 }) => {
-    console.log(parse_wiktionary);
+  parse: (data, search_term = null, url = null, engine_index = 20, language = "de", mimeType = "text/xml") => {
     // create new DOMParser
-    const domParser = new DOMParser();
+    const dom_parser = new DOMParser();
     // get XMLDocument after parsing
-    const doc = domParser.parseFromString(data, options.mimeType);
-    switch (options.smi) {
+    const doc = dom_parser.parseFromString(data, mimeType);
+    // define result embed object
+    let embed_obj = null;
+    switch (engine_index) {
       case 1: // google
         break;
       case 2:
@@ -98,7 +94,7 @@ const Parser = {
       case 19:
         break;
       case 20: // wiktionary
-        parse_wiktionary(doc);
+        embed_obj = parse_wiktionary(doc, search_term, url);
         break;
       case 21:
         break;
@@ -115,8 +111,8 @@ const Parser = {
       default:
         break;
     }
+    return embed_obj;
   },
 };
 
 module.exports.Parser = Parser;
-//exports.Parser = Parser;

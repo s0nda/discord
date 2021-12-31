@@ -7,7 +7,7 @@
 const { HttpX } = require("../utils/httpx.js");
 const { Parser } = require("../utils/parser.js");
 const { Settings } = require("../settings.js");
-const { SlashCommandBuilder, channelMention } =  require("@discordjs/builders");
+const { SlashCommandBuilder } =  require("@discordjs/builders");
 
 module.exports = {
   data: new SlashCommandBuilder()

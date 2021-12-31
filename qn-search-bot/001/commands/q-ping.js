@@ -2,7 +2,7 @@
  * @file: "q-ping.js"
  * @usage:
  *    #SlashCommand:  /q-ping
- *    #UserInput:      q!ping
+ *    #UserInput:      q:ping
  */
 const { SlashCommandBuilder } =  require("@discordjs/builders");
 const { Settings } = require("../settings.js");

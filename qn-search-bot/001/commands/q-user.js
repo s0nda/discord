@@ -2,7 +2,7 @@
  * @file: "q-user.js"
  * @usage:
  *    #SlashCommand:  /q-user
- *    #UserInput:      q!user
+ *    #UserInput:      q:user
  */
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Settings } = require("../settings.js");

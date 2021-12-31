@@ -2,7 +2,7 @@
  * @file: "q-search.js"
  * @usage:
  *    #SlashCommand:  /q-search
- *    #UserInput:      q!search
+ *    #UserInput:      q:search
  */
 const { HttpX } = require("../utils/httpx.js");
 const { Parser } = require("../utils/parser.js");
